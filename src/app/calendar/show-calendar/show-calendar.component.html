@@ -1,0 +1,38 @@
+<h1>Kalendarz</h1>
+<form (ngSubmit)="onSubmitForm()">
+  <div class="form-group">
+    <label for="minutesForLesson">Ilość minut zajęć:</label>
+    <input type="number" class="form-control" id="minutesForLesson" name="minutesForLesson" [(ngModel)]="minutesForLesson" [ngModelOptions]="{ standalone: true }">
+  </div>
+  <div class="form-group">
+    <label for="subject">Przedmiot:</label>
+    <input type="text" class="form-control" id="subject" name="subject" [(ngModel)]="subject" [ngModelOptions]="{ standalone: true }">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<div *ngIf="formSubmitted">
+<table class="table table-striped table-bordered" >
+  <thead>
+    <tr>
+      <th class="text-center" *ngFor="let date of uniqueDates">{{date.day}}.0{{date.month + 1}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td *ngFor="let day of calendarDates">
+        <form class="form" #userForm="ngForm" [id]="day" (submit)="confirmReservation(startDateTime)">
+          <div class="form-group text-center">
+            <select class="form-control text-center" [id]="'select' + day" [(ngModel)]="startDateTime" [ngModelOptions]="{standalone: true}" [name]="'select' + day">
+              <option *ngFor="let free of day" [ngValue]="free">{{ free.fromHour }}</option>
+            </select>
+            <br/>
+            <button type="submit" class="btn btn-primary">Zatwierdź</button>
+          </div>
+        </form>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+

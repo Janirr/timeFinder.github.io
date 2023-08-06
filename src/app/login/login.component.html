@@ -1,0 +1,62 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div *ngIf="!authService.isAuthenticated()" class="login-form">
+        <h2 class="text-center mb-4">Logowanie ucznia</h2>
+        <form (submit)="login()" class="p-4 bg-light rounded">
+          <div class="form-group">
+            <label for="studentEmail">
+              <img src="assets/login.png" alt="Ikona loginu" width="32px">
+              E-mail:
+            </label>
+            <input type="text" id="studentEmail" name="studentEmail" [(ngModel)]="studentEmail" required class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="studentPassword">
+              <img src="assets/password.png" alt="Ikona hasła" width="32px">
+              Hasło:
+            </label>
+            <input type="password" id="studentPassword" name="studentPassword" [(ngModel)]="studentPassword" required class="form-control">
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Login</button>
+        </form>
+      </div>
+      <div *ngIf="authService.isAuthenticated()" class="logout-form">
+        <form (submit)="logout()" class="p-4 bg-light rounded">
+          <button type="submit" class="btn btn-primary btn-block">Logout</button>
+        </form>
+      </div>
+    </div>
+    <div class="row">
+
+    </div>
+    <div class="col-md-4">
+      <div *ngIf="!authService.isAuthenticated()" class="login-form">
+        <h2 class="text-center mb-4">Logowanie nauczyciela</h2>
+        <form (submit)="tutorLogin()" class="p-4 bg-light rounded">
+          <div class="form-group">
+            <label for="tutorEmail">
+              <img src="assets/login.png" alt="Ikona loginu" width="32px">
+              E-mail:
+            </label>
+            <input type="text" id="tutorEmail" name="tutorEmail" [(ngModel)]="tutorEmail" required class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="tutorPassword">
+              <img src="assets/password.png" alt="Ikona hasła" width="32px">
+              Hasło:
+            </label>
+            <input type="password" id="tutorPassword" name="tutorPassword" [(ngModel)]="tutorPassword" required class="form-control">
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Login</button>
+        </form>
+      </div>
+      <div *ngIf="authService.isAuthenticated()" class="logout-form">
+        <form (submit)="logout()" class="p-4 bg-light rounded">
+          <button type="submit" class="btn btn-primary btn-block">Logout</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
